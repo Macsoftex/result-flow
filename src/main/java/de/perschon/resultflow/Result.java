@@ -58,7 +58,7 @@ public interface Result<V, E> {
 	}
 
 	/**
-	 * Returns a new Err instance containing the given error.
+	 * Returns a new Failure instance containing the given error.
 	 *
 	 * @param error the error
 	 * @param <V> The type of the value
@@ -71,7 +71,7 @@ public interface Result<V, E> {
 
 	/**
 	 * Returns the value of this instance as an {@link Optional}. Returns Optional.empty()
-	 * if this is an Err instance.
+	 * if this is an Failure instance.
 	 * @return see above.
 	 */
 	Optional<V> getValue();
@@ -87,26 +87,26 @@ public interface Result<V, E> {
 	 * Returns <code>true</code> if this instance represents an Ok value, false otherwise.
 	 * @return see above.
 	 */
-	boolean isOk();
+	boolean isSuccess();
 	
 	/**
-	 * Returns <code>true</code> if this instance represents an Err value, false otherwise.
+	 * Returns <code>true</code> if this instance represents an Failure value, false otherwise.
 	 * @return see above
 	 */
-	boolean isErr();
+	boolean isFailure();
 
 	/**
 	 * Returns the contained value if this is an Ok value, otherwise throws a ResultException.
 	 * @return the contained value
-	 * @throws ResultException in case unwrap() is called on an Err value
+	 * @throws ResultException in case unwrap() is called on an Failure value
 	 */
 	V unwrap() throws ResultException;
 
 	/**
-	 * Express the expectation that this object is an Ok value. If it's an Err value
+	 * Express the expectation that this object is an Ok value. If it's an Failure value
 	 * instead, throw a ResultException with the given message.
 	 * @param message the message to pass to a potential ResultException
-	 * @throws ResultException if unwrap() is called on an Err value
+	 * @throws ResultException if unwrap() is called on an Failure value
 	 */
 	void expect(String message) throws ResultException;
 	
@@ -147,14 +147,14 @@ public interface Result<V, E> {
 	}
 
 	/**
-	 * If this is an Err value, mapErr() returns the result of the given @{link Function}, wrapped
-	 * in a new Err Result instance. Otherwise returns this.
+	 * If this is an Failure value, mapFailure() returns the result of the given @{link Function}, wrapped
+	 * in a new Failure Result instance. Otherwise returns this.
 	 *
 	 * @param lambda The {@link Function} to call with the error of this.
 	 * @param <F>  The new error type.
      * @return see above
      */
-	default <F> Result<V, F> mapErr(final Function<E, F> lambda) {
+	default <F> Result<V, F> mapFailure(final Function<E, F> lambda) {
 		return getError()
 			.map(e -> Result.<V, F>failure(lambda.apply(e)))
 			.orElseGet(() -> {

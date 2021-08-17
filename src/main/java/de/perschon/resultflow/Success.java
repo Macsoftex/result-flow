@@ -47,12 +47,12 @@ public class Success<V, E> implements Result<V, E> {
 	}
 
 	@Override
-	public boolean isOk() {
+	public boolean isSuccess() {
 		return true;
 	}
 
 	@Override
-	public boolean isErr() {
+	public boolean isFailure() {
 		return false;
 	}
 

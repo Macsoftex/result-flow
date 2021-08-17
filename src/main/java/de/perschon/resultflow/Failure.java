@@ -33,7 +33,7 @@ public class Failure<V, E> implements Result<V, E> {
 	 */
 	Failure(final E error) {
 		super();
-		this.failureor = error;
+		this.error = error;
 	}
 
 	@Override
@@ -47,18 +47,18 @@ public class Failure<V, E> implements Result<V, E> {
 	}
 
 	@Override
-	public boolean isOk() {
+	public boolean isSuccess() {
 		return false;
 	}
 
 	@Override
-	public boolean isErr() {
+	public boolean isFailure() {
 		return true;
 	}
 
 	@Override
 	public V unwrap() {
-		throw new ResultException("Cannot call unwrap() on an Err value");
+		throw new ResultException("Cannot call unwrap() on an Failure value");
 	}
 
 	@Override
