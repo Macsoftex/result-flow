@@ -19,55 +19,55 @@ package de.perschon.resultflow;
 import java.util.Optional;
 
 /**
- * This class represents the Err side of @{link Result}.
+ * This class represents the Success side of @{link Result}.
  *
  * @param <V> The value type
  * @param <E> The error type
  */
-public class Err<V, E> implements Result<V, E> {
-	private final E error;
+public class Success<V, E> implements Result<V, E> {
+	private final V value;
 
 	/**
 	 * Constructor.
-	 * @param error the error
+	 * @param value the value
 	 */
-	Err(final E error) {
+	Success(final V value) {
 		super();
-		this.error = error;
+		this.value = value;
 	}
 
 	@Override
 	public Optional<V> getValue() {
-		return Optional.empty();
+		return Optional.of(value);
 	}
 
 	@Override
 	public Optional<E> getError() {
-		return Optional.of(error);
+		return Optional.empty();
 	}
 
 	@Override
 	public boolean isOk() {
-		return false;
-	}
-
-	@Override
-	public boolean isErr() {
 		return true;
 	}
 
 	@Override
+	public boolean isErr() {
+		return false;
+	}
+
+	@Override
 	public V unwrap() {
-		throw new ResultException("Cannot call unwrap() on an Err value");
+		return value;
 	}
 
 	@Override
 	public void expect(final String message) throws ResultException {
-		throw new ResultException(message);
+		// do nothing
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Err(%s)", error);
+		return String.format("Success(%s)", value);
 	}
 }

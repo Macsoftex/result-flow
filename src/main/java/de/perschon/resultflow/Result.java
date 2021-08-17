@@ -53,8 +53,8 @@ public interface Result<V, E> {
 	 * @param <E> The type of the error
 	 * @return see above
 	 */
-	static <V, E> Result<V, E> ok(final V value) {
-		return new Ok<V, E>(value);
+	static <V, E> Result<V, E> success(final V value) {
+		return new Success<V, E>(value);
 	}
 
 	/**
@@ -65,8 +65,8 @@ public interface Result<V, E> {
 	 * @param <E> The type of the error
 	 * @return see above
 	 */
-	static <V, E> Result<V, E> err(final E error) {
-		return new Err<V, E>(error);
+	static <V, E> Result<V, E> failure(final E error) {
+		return new Failure<V, E>(error);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public interface Result<V, E> {
 	 */
 	default <U> Result<U, E> map(final Function<V, U> lambda) {
 		return getValue()
-			.map(v -> Result.<U, E>ok(lambda.apply(v)))
+			.map(v -> Result.<U, E>success(lambda.apply(v)))
 			.orElseGet(() -> {
 				@SuppressWarnings("unchecked")
 				final Result<U, E> ret = (Result<U, E>) this;
@@ -156,7 +156,7 @@ public interface Result<V, E> {
      */
 	default <F> Result<V, F> mapErr(final Function<E, F> lambda) {
 		return getError()
-			.map(e -> Result.<V, F>err(lambda.apply(e)))
+			.map(e -> Result.<V, F>failure(lambda.apply(e)))
 			.orElseGet(() -> {
 				@SuppressWarnings("unchecked")
 				final Result<V, F> ret = (Result<V, F>) this;
