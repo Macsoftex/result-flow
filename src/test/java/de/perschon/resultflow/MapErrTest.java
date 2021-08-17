@@ -26,22 +26,22 @@ public class MapErrTest {
     private final Result<String, Exception> ok = Result.success("bar");
 
     @Test
-    public void mapErrShouldCallLambda() {
-        final Result<String, String> result = err.mapErr(Throwable::getMessage);
+    public void mapFailureShouldCallLambda() {
+        final Result<String, String> result = err.mapFailure(Throwable::getMessage);
         assertThat(result.getError().get()).isExactlyInstanceOf(String.class);
         assertThat(result.getError().get()).isEqualTo("foo");
     }
 
     @Test
-    public void mapErrShouldNotCallLambdaWhenItsAnOk() {
-        final Result<String, Object> result = ok.mapErr(e -> {
+    public void mapFailureShouldNotCallLambdaWhenItsAnOk() {
+        final Result<String, Object> result = ok.mapFailure(e -> {
             throw new RuntimeException("should not be called!");
         });
     }
 
     @Test
-    public void mapErrShouldReturnThisIfItsAnOk() {
-        final Result<String, String> result = ok.mapErr(e -> "not called");
+    public void mapFailureShouldReturnThisIfItsAnOk() {
+        final Result<String, String> result = ok.mapFailure(e -> "not called");
         assertThat(result).isSameAs(ok);
     }
 

@@ -34,12 +34,12 @@ public class BaseFunctionsTest {
 	
 	@Test
 	public void okShouldIdentifyAsOk() {
-		assertThat(ok.isOk()).isTrue();
+		assertThat(ok.isSuccess()).isTrue();
 	}
 	
 	@Test
 	public void okShouldNotIdentifyAsErr() {
-		assertThat(ok.isErr()).isFalse();
+		assertThat(ok.isFailure()).isFalse();
 	}
 	
 	@Test
@@ -59,12 +59,12 @@ public class BaseFunctionsTest {
 	
 	@Test
 	public void errShouldIdentifyAsErr() {
-		assertThat(err.isErr()).isTrue();
+		assertThat(err.isFailure()).isTrue();
 	}
 	
 	@Test
 	public void errShouldNotIdentifyAsOk() {
-		assertThat(err.isOk()).isFalse();
+		assertThat(err.isSuccess()).isFalse();
 	}
 	
 	@Test
