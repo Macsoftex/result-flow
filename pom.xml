@@ -15,23 +15,23 @@ limitations under the License.
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.leopard2a5</groupId>
+	<groupId>com.github.Macsoftex</groupId>
 	<artifactId>result-flow</artifactId>
 	<version>1.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Functional error handling library inspired by the Rust language.</description>
-	<url>https://github.com/Leopard2A5/result-flow</url>
+	<url>https://github.com/Macsoftex/result-flow</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<scm>
-		<connection>scm:git:git://github.com/Leopard2A5/result-flow.git</connection>
-		<developerConnection>scm:git:https://github.com/Leopard2A5/result-flow.git</developerConnection>
-		<url>http://github.com/Leopard2A5/result-flow/tree/master</url>
+		<connection>scm:git:git://github.com/Macsoftex/result-flow.git</connection>
+		<developerConnection>scm:git:https://github.com/Macsoftex/result-flow.git</developerConnection>
+		<url>http://github.com/Macsoftex/result-flow/tree/master</url>
 	  	<tag>HEAD</tag>
   	</scm>
 
