@@ -24,13 +24,13 @@ public class ExpectTest {
 
 	@Test
 	public void expectShouldDoNothingOnOk() {
-		Result.ok(5).expect("foo");
+		Result.success(5).expect("foo");
 	}
 
 	@Test
 	public void expectShouldThrowExceptionOnErr() {
 		try {
-			Result.err(7).expect("This should be ok");
+			Result.failure(7).expect("This should be ok");
 		} catch (final ResultException e) {
 			assertThat(e)
 				.isExactlyInstanceOf(ResultException.class)

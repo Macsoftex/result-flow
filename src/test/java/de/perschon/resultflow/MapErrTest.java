@@ -22,8 +22,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MapErrTest {
 
-    private final Result<String, Exception> err = Result.err(new RuntimeException("foo"));
-    private final Result<String, Exception> ok = Result.ok("bar");
+    private final Result<String, Exception> err = Result.failure(new RuntimeException("foo"));
+    private final Result<String, Exception> ok = Result.success("bar");
 
     @Test
     public void mapErrShouldCallLambda() {

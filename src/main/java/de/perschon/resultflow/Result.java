@@ -33,9 +33,9 @@ import java.util.function.Function;
  * <pre>
  * public Result<Float, String> divide(int a, int b) {
  *     if (b == 0) {
- *         return Result.err("Can't divide by zero!");
+ *         return Result.failure("Can't divide by zero!");
  *     } else {
- *         return Result.ok(a / b);
+ *         return Result.success(a / b);
  *     }
  * }
  * </pre>

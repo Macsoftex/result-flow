@@ -24,12 +24,12 @@ public class UnwrapTest {
 
 	@Test
 	public void unwrapShouldReturnTheValueOnOk() {
-		final String result = Result.ok("foo").unwrap();
+		final String result = Result.success("foo").unwrap();
 		assertThat(result).isEqualTo("foo");
 	}
 
 	@Test(expected = ResultException.class)
 	public void unwrapShouldThrowExceptionOnErr() {
-		Result.err("not a value").unwrap();
+		Result.failure("not a value").unwrap();
 	}
 }

@@ -22,8 +22,8 @@ import org.junit.Test;
 
 public class AndThenTest {
 
-	private final Result<String, String> five = Result.ok("5");
-	private final Result<String, String> err = Result.err("error");
+	private final Result<String, String> five = Result.success("5");
+	private final Result<String, String> err = Result.failure("error");
 	
 	@Test
 	public void andThenShouldCallLambda() {
@@ -40,15 +40,15 @@ public class AndThenTest {
 	
 	@Test
 	public void andThenShouldReturnThisWhenItsAnErr() {
-		final Result<Object, String> result = err.andThen(v -> Result.err("foo"));
+		final Result<Object, String> result = err.andThen(v -> Result.failure("foo"));
 		assertThat(result).isSameAs(err);
 	}
 
 	private Result<Integer, String> stringToInt(final String input) {
 		try {
-			return Result.ok(Integer.valueOf(input));
+			return Result.success(Integer.valueOf(input));
 		} catch (final NumberFormatException e) {
-			return Result.err(e.getMessage());
+			return Result.failure(e.getMessage());
 		}
 	}
 }

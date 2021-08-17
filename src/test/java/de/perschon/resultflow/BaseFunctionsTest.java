@@ -24,8 +24,8 @@ import org.junit.Test;
 
 public class BaseFunctionsTest {
 
-	private final Result<String, Object> ok = Result.ok("foo");
-	private final Result<Object, String> err = Result.err("bar");
+	private final Result<String, Object> ok = Result.success("foo");
+	private final Result<Object, String> err = Result.failure("bar");
 	
 	@Test
 	public void okShouldReturnAnOk() {

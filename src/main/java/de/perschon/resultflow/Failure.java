@@ -33,7 +33,7 @@ public class Failure<V, E> implements Result<V, E> {
 	 */
 	Failure(final E error) {
 		super();
-		this.error = error;
+		this.failureor = error;
 	}
 
 	@Override

@@ -22,8 +22,8 @@ import org.junit.Test;
 
 public class MapTest {
 
-	private final Result<Integer, String> five = Result.ok(5);
-	private final Result<Integer, String> err = Result.err("error");
+	private final Result<Integer, String> five = Result.success(5);
+	private final Result<Integer, String> err = Result.failure("error");
 	
 	@Test
 	public void mapShouldCallLambda() {

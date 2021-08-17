@@ -36,9 +36,9 @@ public class Numbers {
 
 	private static Result<Integer, String> parseInt(final String input) {
 		try {
-			return Result.ok(Integer.parseInt(input));
+			return Result.success(Integer.parseInt(input));
 		} catch (final NumberFormatException e) {
-			return Result.err(e.getMessage());
+			return Result.failure(e.getMessage());
 		}
 	}
 
@@ -46,9 +46,9 @@ public class Numbers {
 		try {
 			final InputStreamReader in = new InputStreamReader(System.in);
 			final BufferedReader buf = new BufferedReader(in);
-			return Result.ok(buf.readLine());
+			return Result.success(buf.readLine());
 		} catch (final IOException e) {
-			return Result.err(e.getMessage());
+			return Result.failure(e.getMessage());
 		}
 	}
 }
