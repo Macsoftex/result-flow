@@ -17,6 +17,7 @@
 package de.perschon.resultflow;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -162,6 +163,17 @@ public interface Result<V, E> {
 				final Result<V, F> ret = (Result<V, F>) this;
 				return ret;
 			});
+	}
+
+	/**
+	 * Apply effects of the given @{link Consumer} on value and error
+	 *
+	 * @param onSuccess The {@link Consumer} to call with the value of this.
+	 * @param onFailure The {@link Consumer} to call with the error of this.
+	 */
+	default void apply(final Consumer<V> onSuccess, final Consumer<E> onFailure) {
+		this.getValue().ifPresent(onSuccess);
+		this.getError().ifPresent(onFailure);
 	}
 
 }
