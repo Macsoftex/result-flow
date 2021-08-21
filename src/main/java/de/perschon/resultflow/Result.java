@@ -185,9 +185,9 @@ public interface Result<V, E> {
 	 */
 	default <R> R fold(final Function<V, R> onSuccess, final Function<E, R> onFailure) {
 		if (this.isSuccess()) {
-			return onSuccess.apply(this.getValue().orElseThrow());
+			return onSuccess.apply(this.getValue().orElseThrow(RuntimeException::new));
 		} else {
-			return onFailure.apply(this.getError().orElseThrow());
+			return onFailure.apply(this.getError().orElseThrow(RuntimeException::new));
 		}
 	}
 
