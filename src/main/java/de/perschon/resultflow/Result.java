@@ -176,4 +176,19 @@ public interface Result<V, E> {
 		this.getError().ifPresent(onFailure);
 	}
 
+	/**
+	 * Apply effects of the given @{link Function} on value / error and return result
+	 *
+	 * @param onSuccess The {@link Function} to call with the value of this.
+	 * @param onFailure The {@link Function} to call with the error of this.
+	 * @return see above
+	 */
+	default <R> R fold(final Function<V, R> onSuccess, final Function<E, R> onFailure) {
+		if (this.isSuccess()) {
+			return onSuccess.apply(this.getValue().orElseThrow());
+		} else {
+			return onFailure.apply(this.getError().orElseThrow());
+		}
+	}
+
 }
