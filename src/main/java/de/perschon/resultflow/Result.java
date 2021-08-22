@@ -148,6 +148,24 @@ public interface Result<V, E> {
 	}
 
 	/**
+	 * If this is an Success value, flatMap() returns the flatted result of the given {@link Function}.
+	 * Otherwise returns this.
+	 *
+	 * @param lambda The {@link Function} to call with the value of this.
+	 * @param <U> The new value type.
+	 * @return see above.
+	 */
+	default <U> Result<U, E> flatMap(final Function<V, Result<U, E>> lambda) {
+		return getValue()
+			.map(lambda)
+			.orElseGet(() -> {
+				@SuppressWarnings("unchecked")
+				final Result<U, E> ret = (Result<U, E>) this;
+				return ret;
+			});
+	}
+
+	/**
 	 * If this is an Failure value, mapFailure() returns the result of the given @{link Function}, wrapped
 	 * in a new Failure Result instance. Otherwise returns this.
 	 *
