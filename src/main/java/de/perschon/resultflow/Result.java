@@ -183,6 +183,18 @@ public interface Result<V, E> {
 				return ret;
 			});
 	}
+
+	/**
+	 * Returns the flatted result of the given {@link Function} applied to value or error.
+	 *
+	 * @param onSuccess The {@link Function} to call with the value of this.
+	 * @param onFailure The {@link Function} to call with the error of this.
+	 * @return see above.
+	 */
+
+	Result<V, E> flatMapOrElse(final Function<V, Result<V, E>> onSuccess, final Function<E, Result<V, E>> onFailure);
+
+	/**
 	 * If this is an Failure value, mapFailure() returns the result of the given @{link Function}, wrapped
 	 * in a new Failure Result instance. Otherwise returns this.
 	 *
@@ -225,5 +237,4 @@ public interface Result<V, E> {
 			return onFailure.apply(this.getError().orElseThrow(RuntimeException::new));
 		}
 	}
-
 }

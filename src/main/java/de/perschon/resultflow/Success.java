@@ -17,6 +17,7 @@
 package de.perschon.resultflow;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * This class represents the Success side of @{link Result}.
@@ -64,6 +65,11 @@ public class Success<V, E> implements Result<V, E> {
 	@Override
 	public void expect(final String message) throws ResultException {
 		// do nothing
+	}
+
+	@Override
+	public Result<V, E> flatMapOrElse(Function<V, Result<V, E>> onSuccess, Function<E, Result<V, E>> onFailure) {
+		return onSuccess.apply(value);
 	}
 
 	@Override
