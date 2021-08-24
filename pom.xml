@@ -17,7 +17,7 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.Macsoftex</groupId>
 	<artifactId>result-flow</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.11</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
